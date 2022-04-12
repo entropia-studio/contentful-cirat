@@ -1,5 +1,15 @@
 <div class="container">
-  <div class="track">
-
+  <div class="tracks">
+    <mat-card *ngFor="let track of tracks;let i = index" class="track">
+      <mat-card-header>
+        {{ track.fields.name }}
+      </mat-card-header>
+      <img mat-card-image src="{{ track.fields?.images[0]?.fields.imageFile.fields.file.url }}?w=500">
+      <mat-card-content [innerHtml]="getFirstParagraph(track.fields.description)">
+      </mat-card-content>
+      <mat-card-actions class="u-marginTopAuto">
+        <a mat-button [routerLink]="['/tracks', track.fields.slug]">View details</a>
+      </mat-card-actions>
+    </mat-card>
   </div>
 </div>

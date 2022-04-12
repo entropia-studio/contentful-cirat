@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { TracksComponent } from './tracks.component';
 import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 const routes: Routes = [
   {
     path: '',
@@ -12,6 +13,11 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [TracksComponent],
-  imports: [CommonModule, MatCardModule, RouterModule.forChild(routes)],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    MatCardModule,
+    MatButtonModule,
+  ],
 })
 export class TracksModule {}
