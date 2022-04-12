@@ -19,5 +19,5 @@ export type Track = {
 type ImageFile = {
   title: contentful.EntryFields.Text;
   description?: contentful.EntryFields.Text;
-  file: contentful.EntryFields.Link<contentful.Asset>;
+  imageFile: contentful.Asset;
 };

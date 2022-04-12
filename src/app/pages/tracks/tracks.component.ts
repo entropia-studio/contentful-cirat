@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Entry } from 'contentful';
+import * as contentful from 'contentful';
 import { ContentfulService } from 'src/app/utils/contentful.service';
 import { Track } from './models/track';
 import { TracksService } from './services/tracks.service';
@@ -10,7 +10,7 @@ import { TracksService } from './services/tracks.service';
   styleUrls: ['./tracks.component.scss'],
 })
 export class TracksComponent implements OnInit {
-  tracks: Entry<any>[] = [];
+  tracks: contentful.Entry<Track>[] = [];
 
   constructor(
     private tracksService: TracksService,
@@ -18,10 +18,9 @@ export class TracksComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.tracksService.getTracks().then((res) => {
-      console.log(res);
-      this.tracks = res;
-    });
+    this.tracksService
+      .getTracks()
+      .then((tracks) => (this.tracks = tracks.items));
   }
 
   getFirstParagraph(richText: unknown): string {
