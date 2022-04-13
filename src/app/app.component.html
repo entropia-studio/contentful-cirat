@@ -1,1 +1,9 @@
-<router-outlet></router-outlet>
+<div class="container">
+  <section>
+    <header>
+      <button mat-button (click)="changeLang('en-US')" color="primary">English</button>
+      <button mat-button (click)="changeLang('es')" color="primary">Español</button>
+    </header>
+    <router-outlet></router-outlet>
+  </section>
+</div>

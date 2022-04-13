@@ -3,11 +3,18 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch Chrome",
-      "request": "launch",
-      "type": "chrome",
-      "url": "http://localhost:4200",
-      "webRoot": "${workspaceFolder}"
+      "type": "firefox",
+      "request": "attach",
+      "name": "Attach Firefox",
+      "pathMappings": [       
+        {
+          "url": "webpack:///src/app",
+          "path": "${workspaceFolder}/src/app"
+        }
+      ]
     },
+    {
+      "name": "Launch Chrome",
+    }
   ]
 }
