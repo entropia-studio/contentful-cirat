@@ -13,11 +13,12 @@ export type Track = {
   negativeGradient: contentful.EntryFields.Text;
   positiveGradient: contentful.EntryFields.Text;
   totalTime: contentful.EntryFields.Text;
+  slug: contentful.EntryFields.Text;
   active: contentful.EntryFields.Boolean;
 };
 
 type ImageFile = {
   title: contentful.EntryFields.Text;
   description?: contentful.EntryFields.Text;
-  file: contentful.EntryFields.Link<contentful.Asset>;
+  imageFile: contentful.Asset;
 };

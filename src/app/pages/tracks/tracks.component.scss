@@ -1,3 +1,6 @@
+@import "~@angular/material/theming";
+@import "../../../themes.scss";
+
 .container {
   display: flex;
   justify-content: center;
@@ -7,6 +10,14 @@
   .tracks {
     .track {
       margin-bottom: 1rem;
+      &__header {
+        display: inline;
+        color: mat-color($my-app-primary);
+        font-size: 1rem;
+      }
+      img {
+        cursor: pointer;
+      }
     }
   }
 }
