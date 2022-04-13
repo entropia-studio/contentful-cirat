@@ -1,2 +1,43 @@
-<p>track-detail works!</p>
-{{ track$ | async | json }}
+<div *ngIf="track$ | async as track;">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <button mat-button (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon> {{track.fields.name}}
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <img src="{{ track.fields.images[0].fields.imageFile.fields.file.url}}?w=768">
+  <div class="track">
+    <div class="track__name">
+      <h3>{{ track.fields.name }}</h3>
+      <hr>
+    </div>
+    <div class="details">
+      <div class="row">
+        <span>
+          <mat-icon class="even">directions_walk</mat-icon> {{track.fields.distance}} km
+        </span>
+        <span>{{track.fields.totalTime}} h <mat-icon class="odd">timer</mat-icon></span>
+      </div>
+      <div class="row">
+        <span>
+          <mat-icon class="even">trending_up</mat-icon> Desnivel+ {{track.fields.positiveGradient}} m
+        </span>
+        <span>Desnivel+ {{track.fields.negativeGradient}} m<mat-icon class="odd">trending_down</mat-icon> </span>
+      </div>
+      <div class="row">
+        <span>
+          <mat-icon class="even">vertical_align_top</mat-icon> Alt. máx: {{track.fields.maxAltitude}} m
+        </span>
+        <span>Alt. mín: {{track.fields.minAltitude}} m<mat-icon class="odd">vertical_align_bottom</mat-icon> </span>
+      </div>
+      <div class="row">
+        <span>
+          <mat-icon class="even">refresh</mat-icon> Circular: {{ track.fields.isCircular ? "Yes" : "No" }}
+        </span>
+      </div>
+    </div>
+    <hr>
+    <p [innerHtml]="contentfulService.returnHtmlFromRichText(track.fields.description)"></p>
+  </div>
+</div>
