@@ -1,7 +1,6 @@
 import * as contentful from 'contentful';
 
 export type Track = {
-  id: string;
   name: contentful.EntryFields.Text;
   description: contentful.EntryFields.Text;
   position: contentful.EntryFields.Number;
