@@ -12,9 +12,7 @@ import { Track } from '../models/track';
   providedIn: 'root',
 })
 export class TracksService {
-  tracks$: Observable<
-    contentful.EntryWithLinkResolutionAndWithUnresolvableLinks<Track>[]
-  >;
+  tracks$: Observable<contentful.Entry<Track>[]>;
   locale: string = AppSettings.LANGUAGES.EN;
 
   private cdaClient = contentful.createClient({
@@ -33,9 +31,7 @@ export class TracksService {
 
   async getTracks(
     query?: ContentfulQuery
-  ): Promise<
-    contentful.EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<Track>
-  > {
+  ): Promise<contentful.EntryCollection<Track>> {
     const queryObj = {
       content_type: 'track',
       locale: this.locale,

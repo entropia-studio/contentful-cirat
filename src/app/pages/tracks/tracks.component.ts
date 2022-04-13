@@ -17,14 +17,14 @@ export class TracksComponent implements OnInit, OnDestroy {
   tracks$!: Observable<contentful.Entry<Track>[]>;
 
   constructor(
-    // private tracksService: TracksService,
+    private tracksService: TracksService,
     private contentfulService: ContentfulService,
     private store: Store
   ) {}
 
   ngOnInit(): void {
-    // this.subscription = this.tracksService.tracks$.subscribe();
-    // this.tracks$ = this.store.select('tracks');
+    this.subscription = this.tracksService.tracks$.subscribe();
+    this.tracks$ = this.store.select('tracks');
   }
 
   getFirstParagraph(richText: unknown): string {
