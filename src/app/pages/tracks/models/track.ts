@@ -1,6 +1,7 @@
 import * as contentful from 'contentful';
 
 export type Track = {
+  id: string;
   name: contentful.EntryFields.Text;
   description: contentful.EntryFields.Text;
   position: contentful.EntryFields.Number;
@@ -13,6 +14,7 @@ export type Track = {
   negativeGradient: contentful.EntryFields.Text;
   positiveGradient: contentful.EntryFields.Text;
   totalTime: contentful.EntryFields.Text;
+  slug: contentful.EntryFields.Text;
   active: contentful.EntryFields.Boolean;
 };
 

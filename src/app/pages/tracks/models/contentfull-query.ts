@@ -1,3 +1,6 @@
 export interface ContentfulQuery {
-  lang?: string;
+  locale?: string;
+  fields?: {
+    slug: string;
+  };
 }

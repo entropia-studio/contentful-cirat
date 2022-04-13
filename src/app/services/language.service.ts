@@ -6,13 +6,14 @@ import { AppSettings } from '../common/appSettings';
   providedIn: 'root',
 })
 export class LanguageService {
-  private subject = new BehaviorSubject<string>(AppSettings.LANGUAGES.EN);
+  private subject = new BehaviorSubject<string>(
+    localStorage.getItem('lang') || AppSettings.LANGUAGES.EN
+  );
   private lang$ = this.subject.asObservable();
-
-  constructor() {}
 
   changeLang(lang: string) {
     this.subject.next(lang);
+    localStorage.setItem('lang', lang);
   }
 
   get lang() {

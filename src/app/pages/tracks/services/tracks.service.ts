@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as contentful from 'contentful';
-import { from, map, Observable, switchMap } from 'rxjs';
+import { from, map, Observable, switchMap, tap } from 'rxjs';
 import { AppSettings } from 'src/app/common/appSettings';
 import { LanguageService } from 'src/app/services/language.service';
 import { environment } from 'src/environments/environment';
@@ -13,6 +13,7 @@ import { Track } from '../models/track';
 })
 export class TracksService {
   tracks$: Observable<contentful.Entry<Track>[]>;
+  locale: string = AppSettings.LANGUAGES.EN;
 
   private cdaClient = contentful.createClient({
     space: environment.contentful.space,
@@ -22,9 +23,8 @@ export class TracksService {
   constructor(private store: Store, private languageService: LanguageService) {
     this.tracks$ = this.languageService.lang.pipe(
       switchMap((lang) => {
-        return from(this.getTracks({ lang })).pipe(
-          map((tracks) => tracks.items)
-        );
+        this.locale = lang;
+        return from(this.getTracks()).pipe(map((tracks) => tracks.items));
       })
     );
   }
@@ -32,23 +32,25 @@ export class TracksService {
   async getTracks(
     query?: ContentfulQuery
   ): Promise<contentful.EntryCollection<Track>> {
-    const tracks = await this.cdaClient.getEntries<Track>({
+    const queryObj = {
       content_type: 'track',
-      locale: query?.lang || AppSettings.LANGUAGES.EN,
-    });
+      locale: this.locale,
+      ...query,
+    };
+
+    const tracks = await this.cdaClient.getEntries<Track>(queryObj);
     this.store.set('tracks', tracks.items);
     return tracks;
   }
 
-  async getTrack(
-    id: string,
-    query?: ContentfulQuery
-  ): Promise<contentful.Entry<Track>> {
-    const track = await this.cdaClient.getEntry<Track>(id, {
-      content_type: 'track',
-      locale: query?.lang || AppSettings.LANGUAGES.EN,
-    });
-
-    return track;
+  getTrack(slug: string): Observable<contentful.Entry<Track>> {
+    return this.store.select<contentful.Entry<Track>[]>('tracks').pipe(
+      map((tracks: contentful.Entry<Track>[]) => {
+        const track = tracks.find(
+          (t: contentful.Entry<Track>) => t.fields.slug === slug
+        );
+        return track as contentful.Entry<Track>;
+      })
+    );
   }
 }
