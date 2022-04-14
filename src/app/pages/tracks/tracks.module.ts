@@ -7,6 +7,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { TranslocoModule } from '@ngneat/transloco';
+import { HeaderModule } from '../header/header.module';
 
 const routes: Routes = [
   {
@@ -28,6 +30,8 @@ const routes: Routes = [
     MatButtonModule,
     MatToolbarModule,
     MatIconModule,
+    TranslocoModule,
+    HeaderModule,
   ],
 })
 export class TracksModule {}

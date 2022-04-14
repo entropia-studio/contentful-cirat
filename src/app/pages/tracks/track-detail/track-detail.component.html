@@ -13,29 +13,40 @@
       <hr>
     </div>
     <div class="details">
-      <div class="row">
-        <span>
-          <mat-icon class="even">directions_walk</mat-icon> {{track.fields.distance}} km
-        </span>
-        <span>{{track.fields.totalTime}} h <mat-icon class="odd">timer</mat-icon></span>
-      </div>
-      <div class="row">
-        <span>
-          <mat-icon class="even">trending_up</mat-icon> Desnivel+ {{track.fields.positiveGradient}} m
-        </span>
-        <span>Desnivel+ {{track.fields.negativeGradient}} m<mat-icon class="odd">trending_down</mat-icon> </span>
-      </div>
-      <div class="row">
-        <span>
-          <mat-icon class="even">vertical_align_top</mat-icon> Alt. máx: {{track.fields.maxAltitude}} m
-        </span>
-        <span>Alt. mín: {{track.fields.minAltitude}} m<mat-icon class="odd">vertical_align_bottom</mat-icon> </span>
-      </div>
-      <div class="row">
-        <span>
-          <mat-icon class="even">refresh</mat-icon> Circular: {{ track.fields.isCircular ? "Yes" : "No" }}
-        </span>
-      </div>
+      <ng-container *transloco="let t; read: 'track'">
+        <div class="row">
+          <span>
+            <mat-icon class="even">directions_walk</mat-icon> {{track.fields.distance}} {{ t('km') }}
+          </span>
+          <span>{{track.fields.totalTime}} {{ t('h') }} <mat-icon class="odd">timer</mat-icon></span>
+        </div>
+        <div class="row">
+          <span>
+            <mat-icon class="even">trending_up</mat-icon> {{ t('gradient') }}+ {{track.fields.positiveGradient}} {{
+            t('m') }}
+          </span>
+          <span i18n>{{ t('gradient') }}+ {{track.fields.negativeGradient}} {{ t('m') }}<mat-icon class="odd">
+              trending_down</mat-icon> </span>
+        </div>
+        <div class="row">
+          <span>
+            <mat-icon class="even">vertical_align_top</mat-icon> {{ t('maxAltitude') }}: {{track.fields.maxAltitude}} {{
+            t('m') }}
+          </span>
+          <span>{{ t('minAltitude') }}: {{track.fields.minAltitude}} {{ t('m') }}<mat-icon class="odd">
+              vertical_align_bottom</mat-icon> </span>
+        </div>
+      </ng-container>
+      <ng-container *transloco="let t;">
+        <div class="row">
+          <span>
+            <mat-icon class="even">refresh</mat-icon> {{ t('track.isCircular') }}: {{ track.fields.isCircular ?
+            t('common.yes') :
+            t('common.no') }}
+          </span>
+        </div>
+
+      </ng-container>
     </div>
     <hr>
     <p [innerHtml]="contentfulService.returnHtmlFromRichText(track.fields.description)"></p>

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import * as contentful from 'contentful';
 import { from, map, Observable, switchMap, tap } from 'rxjs';
 import { AppSettings } from 'src/app/common/appSettings';
-import { LanguageService } from 'src/app/services/language.service';
+import { LanguageService } from 'src/app/pages/header/services/language.service';
 import { environment } from 'src/environments/environment';
 import { Store } from 'store';
 import { ContentfulQuery } from '../models/contentfull-query';
