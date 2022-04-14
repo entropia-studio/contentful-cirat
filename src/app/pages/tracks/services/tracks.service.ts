@@ -16,8 +16,8 @@ export class TracksService {
   locale: string = AppSettings.LANGUAGES.EN;
 
   private cdaClient = contentful.createClient({
-    space: environment.contentful.space,
-    accessToken: environment.contentful.accessToken,
+    space: environment.space,
+    accessToken: environment.accessToken,
   });
 
   constructor(private store: Store, private languageService: LanguageService) {
