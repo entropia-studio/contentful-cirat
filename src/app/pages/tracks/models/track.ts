@@ -17,7 +17,7 @@ export type Track = {
   active: contentful.EntryFields.Boolean;
 };
 
-type ImageFile = {
+export type ImageFile = {
   title: contentful.EntryFields.Text;
   description?: contentful.EntryFields.Text;
   imageFile: contentful.Asset;
