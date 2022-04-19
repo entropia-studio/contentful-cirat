@@ -5,4 +5,5 @@ export const environment = {
   contentTypeIds: {
     track: 'track',
   },
+  translocoFilePath: '/contentful-cirat/assets/i18n',
 };

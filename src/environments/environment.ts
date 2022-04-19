@@ -5,4 +5,5 @@ export const environment = {
   contentTypeIds: {
     track: 'track',
   },
+  translocoFilePath: '/assets/i18n',
 };
